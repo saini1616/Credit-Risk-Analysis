@@ -1,104 +1,106 @@
-<img width="1397" height="788" alt="image" src="https://github.com/user-attachments/assets/7c907871-c816-496a-9747-6851b3c385aa" />
-Credit Risk Analysis & Prediction Dashboard
-📌 Project Overview
+# 🏦 Bank Loan Analysis
 
-This project focuses on credit risk analysis using SQL, Python, and Power BI.
-We built an end-to-end pipeline that starts with raw loan applicant data and ends with an interactive dashboard for stakeholders to monitor loan defaults.
+A comprehensive loan portfolio analysis project focused on understanding loan performance, borrower behavior, portfolio risk, and profitability.  
+This project applies data analytics techniques using Python to derive business insights from structured lending data.
 
-🛠️ Tech Stack
+---
 
-SQL (PostgreSQL, pgAdmin4) → Data cleaning, transformations, feature engineering.
+## 📌 Business Problem
 
-Python (Pandas, Scikit-learn, XGBoost, Random Forest) → ML model training & evaluation.
+Financial institutions process thousands of loan applications across different borrower profiles, regions, and loan purposes.  
+However, without structured analysis, it becomes difficult to evaluate:
 
-Power BI → Dashboard for visualization & business insights.
+- Borrower repayment behavior  
+- Portfolio profitability and losses  
+- Seasonal demand patterns  
+- High-risk vs. low-risk segments  
+- Core lending KPIs  
 
-🔑 Steps Implemented
-1️⃣ Data Preparation (SQL)
+This project addresses these challenges by analyzing historical loan data to uncover performance trends, risk drivers, and strategic opportunities.
 
-Imported loan applicant dataset into PostgreSQL.
+---
 
-Cleaned missing values (median imputation for numeric, mode for categorical).
+## 🎯 Project Objectives
 
-Engineered new features:
+- Calculate and interpret key lending KPIs  
+- Compare Good Loans vs. Bad Loans  
+- Identify profitable and high-risk borrower segments  
+- Analyze portfolio trends across multiple dimensions  
+- Generate business-focused recommendations  
 
-Loan-to-Income Ratio
+---
 
-Employment Category (Binned Employment Length)
+## 🛠️ Tools & Technologies
 
-Age Bands, Income Bands, Interest Rate Bands
+- **Python** – Data analysis and visualization  
+- **Pandas / NumPy** – Data cleaning and transformations  
+- **Matplotlib / Seaborn** – Visual analytics  
+- **Jupyter Notebook** – Analysis workflow  
 
-Verified data distributions and default rates by categories.
+---
 
-2️⃣ Machine Learning (Python)
+## 📊 Dataset Overview
 
-Encoded categorical variables using OneHotEncoder.
+The dataset contains borrower demographics, financial indicators, loan attributes, and repayment status.
 
-Built pipelines with Random Forest and XGBoost.
+### Preprocessing Performed
 
-Tuned hyperparameters using GridSearchCV.
+- Removed incomplete and invalid records  
+- Standardized categorical and numerical formats  
+- Converted DTI, income, term, and interest rates to numeric values  
+- Derived month and year features for trend analysis  
+- Categorized loans into:
+  - **Good Loans (Fully Paid)**
+  - **Bad Loans (Charged Off)**
 
-Achieved strong performance:
+---
 
-Accuracy: ~93%
+## 📈 Key KPIs
 
-Recall (Defaults): ~75% after tuning XGBoost.
+| KPI | Value |
+|------|--------|
+| Total Loan Applications | 38,576 |
+| Total Funded Amount | $435.76M |
+| Total Amount Received | $473.07M |
+| Net Portfolio Return | $37.31M |
+| Average Interest Rate | 12.05% |
+| Average DTI | 13.33% |
 
-Extracted feature importances (Top predictors: Loan-to-Income, Income, Interest Rate, Loan Amount).
+---
 
-Generated predictions + default probabilities for new applicants (scalable to 5,000+ at once).
+## 🔍 Key Insights
 
-3️⃣ Dashboard (Power BI)
+- The portfolio remains profitable with a net return of **$37.31M**  
+- **86.18%** of loans are fully paid, indicating strong repayment behavior  
+- Losses are primarily driven by charged-off loans  
+- Significant concentration observed across:
+  - California region
+  - Debt Consolidation loans
+  - 36-month loan terms  
 
-### A. Power BI (Modeling & Visualization)
-- Imported Python-cleaned dataset into Power BI.  
-- Built DAX measures:  
-  - `Default Probability`  
-  - `Actual Loss` (observed defaults)  
-  - `Expected Loss` = Exposure × PD × LGD  
-- Designed an **interactive Credit Risk Dashboard** with slicers for Loan Intent, Loan Grade, and Income Range.
+---
 
-### B. Business Insights
-- **Good Loans %:** 78.18%  
-- **Default Rate:** 22%  
-- **Predicted Defaults:** 21.82%  
-- **Expected Loss:** $68.16M  
-- **Total Loan Amount at Risk:** $77M  
-- Top risky purposes: **Debt Consolidation (29%)**, **Medical (27%)**, **Home Improvement (26%)**  
-- Highest risk employment category: **New Employees (0–2 yrs, 30%)**  
+## ⚠️ Risk Observations
 
+- Higher default exposure among renters and short-tenure employees  
+- Regional dependency introduces concentration risk  
+- Certain loan purposes contribute disproportionately to losses  
 
-📊 Key Insights
+---
 
-Higher Loan Grades (F, G) have default rates > 70%.
+## ✅ Business Recommendations
 
-Debt Consolidation loans form the largest share of defaults.
+**Risk Control**
+- Strengthen underwriting for higher-risk borrower groups  
+- Implement risk-based pricing strategies  
 
-Loan-to-Income ratio and Interest Rate are the strongest predictors of default.
+**Portfolio Diversification**
+- Reduce geographic and product concentration  
+- Expand into additional borrower segments  
 
-Employment Category shows higher defaults among early-career borrowers.
+**Profitability Optimization**
+- Focus on lower-risk, higher-repayment profiles  
 
-XGBoost model outperformed Random Forest in recall for defaults.
+---
 
-🚀 How to Run
-
-Clone this repo.
-
-Load the SQL scripts in PostgreSQL to clean & prep data.
-
-Run model_training.ipynb in Python to train & evaluate models.
-
-Open the Power BI file (Loan Defaulters Final.pbix) to interact with the dashboard.
-
-
-📌 Next Steps (Future Improvements)
-
-Deploy ML model as a Flask API for real-time scoring.
-
-Connect API to Power BI for live scoring dashboards.
-
-Add survival analysis for loan tenure risk.
-
-Experiment with Neural Networks (TabNet, AutoML) for further improvement.
-
-✨ This project demonstrates the integration of SQL, ML, and BI to deliver a full-stack analytics solution for credit risk management.
+## 📁 Project Structure
