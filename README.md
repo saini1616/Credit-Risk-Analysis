@@ -1,106 +1,129 @@
-# 🏦 Bank Loan Analysis
+# 📊 Credit Risk Analysis & Prediction Dashboard
 
-A comprehensive loan portfolio analysis project focused on understanding loan performance, borrower behavior, portfolio risk, and profitability.  
-This project applies data analytics techniques using Python to derive business insights from structured lending data.
-
----
-
-## 📌 Business Problem
-
-Financial institutions process thousands of loan applications across different borrower profiles, regions, and loan purposes.  
-However, without structured analysis, it becomes difficult to evaluate:
-
-- Borrower repayment behavior  
-- Portfolio profitability and losses  
-- Seasonal demand patterns  
-- High-risk vs. low-risk segments  
-- Core lending KPIs  
-
-This project addresses these challenges by analyzing historical loan data to uncover performance trends, risk drivers, and strategic opportunities.
+An end-to-end analytics project focused on evaluating loan default risk using SQL, Python, and Power BI.  
+The project transforms raw loan applicant data into predictive insights and an interactive dashboard for credit risk monitoring.
 
 ---
 
-## 🎯 Project Objectives
+## 📌 Project Overview
 
-- Calculate and interpret key lending KPIs  
-- Compare Good Loans vs. Bad Loans  
-- Identify profitable and high-risk borrower segments  
-- Analyze portfolio trends across multiple dimensions  
-- Generate business-focused recommendations  
+Financial institutions must assess borrower risk accurately to minimize defaults and optimize portfolio performance.  
+This project develops a complete analytical pipeline to:
 
----
-
-## 🛠️ Tools & Technologies
-
-- **Python** – Data analysis and visualization  
-- **Pandas / NumPy** – Data cleaning and transformations  
-- **Matplotlib / Seaborn** – Visual analytics  
-- **Jupyter Notebook** – Analysis workflow  
+- Clean and transform loan applicant data  
+- Engineer risk-relevant features  
+- Train predictive models  
+- Estimate default probabilities  
+- Visualize portfolio risk metrics  
 
 ---
 
-## 📊 Dataset Overview
+## 🛠️ Tech Stack
 
-The dataset contains borrower demographics, financial indicators, loan attributes, and repayment status.
-
-### Preprocessing Performed
-
-- Removed incomplete and invalid records  
-- Standardized categorical and numerical formats  
-- Converted DTI, income, term, and interest rates to numeric values  
-- Derived month and year features for trend analysis  
-- Categorized loans into:
-  - **Good Loans (Fully Paid)**
-  - **Bad Loans (Charged Off)**
+- **SQL (PostgreSQL, pgAdmin4)** – Data cleaning, transformations, feature engineering  
+- **Python (Pandas, Scikit-learn, XGBoost, Random Forest)** – Model training & evaluation  
+- **Power BI** – Dashboard design & visualization  
 
 ---
 
-## 📈 Key KPIs
+## 🔑 Implementation Workflow
 
-| KPI | Value |
-|------|--------|
-| Total Loan Applications | 38,576 |
-| Total Funded Amount | $435.76M |
-| Total Amount Received | $473.07M |
-| Net Portfolio Return | $37.31M |
-| Average Interest Rate | 12.05% |
-| Average DTI | 13.33% |
+### **1️⃣ Data Preparation (SQL)**
+
+- Imported raw loan applicant dataset into PostgreSQL  
+- Cleaned missing values using:
+  - Median imputation (numeric variables)
+  - Mode imputation (categorical variables)
+
+- Engineered predictive features:
+  - Loan-to-Income Ratio  
+  - Employment Category (Binned Employment Length)  
+  - Age Bands, Income Bands, Interest Rate Bands  
+
+- Validated data distributions and default rates across categories  
+
+---
+
+### **2️⃣ Machine Learning (Python)**
+
+- Encoded categorical variables using **OneHotEncoder**  
+- Built predictive pipelines with:
+  - Random Forest  
+  - XGBoost  
+
+- Performed hyperparameter tuning using **GridSearchCV**
+
+**Model Performance**
+
+- Accuracy: ~93%  
+- Recall (Defaults): ~75% after XGBoost tuning  
+
+- Extracted feature importance rankings  
+- Generated default predictions and probabilities  
+- Enabled scalable inference for **5,000+ applicants**
+
+---
+
+### **3️⃣ Dashboard Development (Power BI)**
+
+- Imported processed dataset into Power BI  
+- Developed DAX measures:
+
+  - Default Probability  
+  - Actual Loss (Observed Defaults)  
+  - Expected Loss = Exposure × PD × LGD  
+
+- Designed interactive dashboard with filters for:
+  - Loan Intent  
+  - Loan Grade  
+  - Income Range  
+
+---
+
+## 📈 Portfolio Metrics Snapshot
+
+- Good Loans: 78.18%  
+- Default Rate: 22%  
+- Predicted Defaults: 21.82%  
+- Expected Loss: $68.16M  
+- Total Loan Amount at Risk: $77M  
 
 ---
 
 ## 🔍 Key Insights
 
-- The portfolio remains profitable with a net return of **$37.31M**  
-- **86.18%** of loans are fully paid, indicating strong repayment behavior  
-- Losses are primarily driven by charged-off loans  
-- Significant concentration observed across:
-  - California region
-  - Debt Consolidation loans
-  - 36-month loan terms  
+- Loan Grades **F and G** exhibit default rates exceeding 70%  
+- Debt Consolidation loans contribute the largest share of defaults  
+- **Loan-to-Income Ratio** and **Interest Rate** are dominant predictors  
+- Early-career borrowers show elevated risk levels  
+- XGBoost demonstrated superior recall compared to Random Forest  
 
 ---
 
-## ⚠️ Risk Observations
+## 🚀 How to Run
 
-- Higher default exposure among renters and short-tenure employees  
-- Regional dependency introduces concentration risk  
-- Certain loan purposes contribute disproportionately to losses  
-
----
-
-## ✅ Business Recommendations
-
-**Risk Control**
-- Strengthen underwriting for higher-risk borrower groups  
-- Implement risk-based pricing strategies  
-
-**Portfolio Diversification**
-- Reduce geographic and product concentration  
-- Expand into additional borrower segments  
-
-**Profitability Optimization**
-- Focus on lower-risk, higher-repayment profiles  
+1. Clone the repository  
+2. Execute SQL scripts in PostgreSQL for data preparation  
+3. Run `model_training.ipynb` for model evaluation  
+4. Open the Power BI dashboard file to explore insights  
 
 ---
 
-## 📁 Project Structure
+## 🔮 Future Enhancements
+
+- Deploy model via Flask API for real-time scoring  
+- Integrate live scoring into Power BI  
+- Extend analysis with survival modeling  
+- Explore advanced ML architectures  
+
+---
+
+## 📌 Conclusion
+
+This project demonstrates how SQL, machine learning, and business intelligence tools can be combined to evaluate credit risk, estimate default probabilities, and support data-driven lending decisions.
+
+---
+
+## ⚠️ Note
+
+This repository is recreated for learning and analytical practice using publicly available datasets and analytical concepts.
